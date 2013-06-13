@@ -1,0 +1,11 @@
+.entry{ id: dom_id(entry) }
+  %h4
+    = link_to entry.title.html_safe, entry.url
+    %small.pull-right
+      = entry.published
+  %h5
+    From
+    = link_to entry.feed.title, entry.feed.url
+    = " by #{entry.author.html_safe}"
+  %p= (entry.content.nil? ? entry.summary : entry.content).html_safe
+  %hr

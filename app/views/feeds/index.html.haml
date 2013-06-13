@@ -1,0 +1,27 @@
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %td{colspan:3, style: 'padding:0;'}
+        .navbar.navbar-static-top
+          .navbar-inner
+            .brand Listing feeds
+            .pull-right
+              .btn-group
+                = link_to 'New Feed', new_feed_path, class: 'btn btn-success'
+              .btn-group
+                = link_to refresh_feeds_path, class: 'btn' do
+                  Refresh All
+    %tr
+      %th Title
+      %th Last updated
+      %th Actions
+  %tbody
+    - @feeds.each do |feed|
+      %tr
+        %td= link_to feed.title, feed
+        %td= feed.updated_at
+        %td
+          .btn-group
+            = link_to 'Edit', edit_feed_path(feed), class: 'btn'
+            = link_to 'Refresh', refresh_feed_path(feed), class: 'btn btn-primary'
+            = link_to 'Destroy', feed, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'

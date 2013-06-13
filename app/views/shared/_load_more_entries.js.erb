@@ -1,0 +1,6 @@
+<% unless @entries.empty? %>  
+  $('.entries').append("<%=escape_javascript(render @entries)%>");
+  $('#more-results-btn').attr('href', "<%=root_url(last: @entries.last.published) %>")
+<% else %>
+  $('#more-results-btn').html('No more entries available').addClass('disabled');
+<% end %>
