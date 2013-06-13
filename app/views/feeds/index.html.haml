@@ -22,6 +22,9 @@
         %td= feed.updated_at
         %td
           .btn-group
+            = link_to 'Stats', stats_feed_path(feed), class: 'btn'
             = link_to 'Edit', edit_feed_path(feed), class: 'btn'
             = link_to 'Refresh', refresh_feed_path(feed), class: 'btn btn-primary'
             = link_to 'Destroy', feed, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+            
+= line_chart stats_feeds_path(format: :json), library: { title: 'Posts per hour', hAxis: { title: 'Time' }, vAxis: { title: 'Posts' } }

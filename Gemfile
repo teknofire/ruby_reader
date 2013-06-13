@@ -5,7 +5,8 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+#gem 'sqlite3'
+gem 'pg'
 gem 'feedzirra'
 gem 'haml-rails'
 gem 'bootstrap-sass'
@@ -14,6 +15,8 @@ gem 'font-awesome-rails'
 gem 'redcarpet'
 gem 'quiet_assets'
 gem 'whenever', require: false
+gem 'chartkick'
+gem 'groupdate'
 
 # Gems used only for assets and not required
 # in production environments by default.

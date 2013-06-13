@@ -1,0 +1,2 @@
+%h2= @feed.title
+= line_chart stats_feed_path(@feed, format: :json), library: { title: 'Posts per hour', hAxis: { title: 'Time' }, vAxis: { title: 'Posts' } }

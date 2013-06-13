@@ -2,6 +2,8 @@ RubyReader::Application.routes.draw do
   resources :feeds do
     get :refresh, on: :member
     get :refresh, on: :collection
+    get :stats, on: :member
+    get :stats, on: :collection
   end
 
 

@@ -25,6 +25,26 @@ class FeedsController < ApplicationController
     end
   end
   
+  def stats
+    @feed = Feed.find(params[:id]) if params[:id].present?
+      
+    respond_to do |format|
+      format.html {
+        @feed = Feed.find(params[:id])
+      }
+      format.json {
+        if @feed
+          @stats = @feed.entries.group_by_hour(:published).count
+        else
+          @stats = Feed.all.map do |feed|
+            { name: feed.title, data: feed.entries.group_by_hour(:published, Time.zone, 1.day.ago..Time.zone.now).count }
+          end
+        end
+        render :json => @stats        
+      }
+    end
+  end
+  
   def refresh
     if params[:id].nil?
       Feed.all.each(&:refresh_cache)
