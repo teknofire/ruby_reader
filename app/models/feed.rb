@@ -44,8 +44,8 @@ class Feed < ActiveRecord::Base
       entry_attrs = { 
         title: entry.title.sanitize, 
         author: entry.author.try(:sanitize), 
-        summary: entry.summary.sanitize,
-        content: entry.content.try(:sanitize),
+        summary: entry.summary,
+        content: entry.content,
         url: entry.url, 
         published: entry.published,
         categories: entry.categories.join(', ')
