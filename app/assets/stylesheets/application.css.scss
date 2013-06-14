@@ -5,10 +5,11 @@ $border_color: $primary_color;
 @import 'jasny-bootstrap';
 @import 'font-awesome';
 @import 'entries';
-@import url(http://fonts.googleapis.com/css?family=Lily+Script+One);
+@import url(http://fonts.googleapis.com/css?family=Headland+One|Lily+Script+One);
 
 html,body {
   background-color: $primary_color;
+  font-family: 'Headland One', serif;
 }
 
 #header {
