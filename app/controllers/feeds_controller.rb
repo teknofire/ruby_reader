@@ -97,7 +97,7 @@ class FeedsController < ApplicationController
 
     respond_to do |format|
       if @feed.update_attributes(params[:feed])
-        @feed.cache
+        @feed.refresh_cache!
         format.html { redirect_to @feed, notice: 'Feed was successfully updated.' }
         format.json { head :no_content }
       else
