@@ -1,3 +1,65 @@
+$primary_color: #8494ad;
+$border_color: $primary_color;
+
 @import 'bootstrap';
 @import 'jasny-bootstrap';
+@import 'font-awesome';
 @import 'entries';
+@import url(http://fonts.googleapis.com/css?family=Lily+Script+One);
+
+html,body {
+  background-color: $primary_color;
+}
+
+#header {
+  font-family: 'Lily Script One', cursive;
+  .brand { font-size: 2em; }
+  
+  &.navbar {
+    @include opacity(90);
+  }
+}
+
+#footer {
+  background-color: #252528;
+  padding: 10px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: #fff;
+}
+
+#content {
+  @include box-shadow(0 2px 5px #000);
+  background-color: #f5f5f5;
+  padding-top: 60px;
+  border: none;
+  .padded-content {
+    padding: 10px;
+  }
+}
+
+.feed-nav { 
+  background-color: #fff; 
+  width: 190px;
+}
+
+.table { background: #fff; }
+
+.chart > div {
+  @extend .thumbnail;
+  background-color: #fff;
+}
+
+a {
+  color: darken($primary_color, 10%);
+}
+
+h1,h2,h3,h4,h5,h6 {
+  small {
+    color: darken($primary_color, 10%);
+  }
+}
+//hr {
+//  border-top: 1px solid #666;
+//  border-bottom: 1px solid #aaa;
+//}

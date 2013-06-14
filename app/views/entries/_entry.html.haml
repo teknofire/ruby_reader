@@ -1,11 +1,13 @@
 .entry{ id: dom_id(entry) }
-  %h4
-    = link_to entry.title.html_safe, entry.url
-    %small.pull-right
-      = entry.published
-  %h5
+  .row-fluid
+    .span9.title
+      = link_to entry.title.html_safe, entry.url
+    .span3.date
+      = entry.published.strftime('%Y-%m-%d %l:%M%P')
+  .author
     From
     = link_to entry.feed.title, entry.feed.url
     = " by #{entry.author.html_safe}" unless entry.author.nil?
-  = (entry.content.nil? ? entry.summary : entry.content).html_safe
+  .content
+    = (entry.content.nil? ? entry.summary : entry.content).html_safe
   %hr

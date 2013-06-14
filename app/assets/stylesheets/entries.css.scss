@@ -5,6 +5,47 @@
 .entry {
   h1 { font-size: 1.5em; }
   h2 { font-size: 1.3em; }
-  h3 { font-size: 1.2em; }
+  h3 { font-size: 1.2em; } 
   
+  .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  
+  .author {
+    font-weight: bold;
+  }
+  
+  .date {
+    text-align: right;
+  }
+  
+  .content {
+    padding: 10px;
+  }
+}
+
+.entries {
+  .has-media, .image-container, .rss-wrap {
+    text-align: center;
+    img {
+      @extend .thumbnail;
+      display: inline-block;
+      border-color: $border_color;
+      background: #fff;
+    }
+    .flex-video {
+      display: block;
+    }
+  }
+  
+  iframe {
+    @include box-sizing(border-box);
+    @extend .thumbnail;
+    display: inline-block;
+    border: 1px solid $border_color !important;
+    background: #fff;      
+  }
 }
