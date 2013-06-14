@@ -12,6 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.timeago
 //= require bootstrap
 //= require jasny-bootstrap
 //= require_tree .
+
+$(document).ready(function() {
+ $("time.timeago").timeago();
+});

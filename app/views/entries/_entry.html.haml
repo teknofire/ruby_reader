@@ -3,7 +3,7 @@
     .span9.title
       = link_to entry.title.html_safe, entry.url
     .span3.date
-      = entry.published.strftime('%Y-%m-%d %l:%M%P')
+      %time.timeago{ datetime: entry.published.iso8601 }= entry.published.strftime('%Y-%m-%d %l:%M%P')
   .author
     From
     = link_to entry.feed.title, entry.feed.url

@@ -18,7 +18,8 @@
     - @feeds.each do |feed|
       %tr
         %td= link_to feed.title, feed
-        %td= feed.updated_at
+        %td
+          %time.timeago{ datetime: feed.updated_at.iso8601 }= feed.updated_at.strftime('%Y-%m-%d %l:%M%P')
         %td= feed.refresh_interval / 60
         %td
           .btn-group
