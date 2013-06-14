@@ -1,2 +1,3 @@
 .entries= render @entries
-= render 'shared/more_entries'
+- unless @entries.empty?
+  = render 'shared/more_entries'
