@@ -6,6 +6,6 @@
   %h5
     From
     = link_to entry.feed.title, entry.feed.url
-    = " by #{entry.author.html_safe}"
-  %p= (entry.content.nil? ? entry.summary : entry.content).html_safe
+    = " by #{entry.author.html_safe}" unless entry.author.nil?
+  = (entry.content.nil? ? entry.summary : entry.content).html_safe
   %hr
