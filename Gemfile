@@ -1,13 +1,24 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+ruby '2.0.0'
+gem 'rails', '4.0.0.rc2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'protected_attributes'
+#gem 'activeresource', github: 'rails/activeresource'
+#gem 'actionpack-action_caching', github: 'rails/actionpack-action_caching'
+#gem 'actionpack-page_caching', github: 'rails/actionpack-page_caching'
+#gem 'activerecord-session_store'
+#gem 'rails-observers'
+#gem 'actionview-encoded_mail_to'
+#gem 'rails-perftest'
+#gem 'actionpack-xml_parser', github: 'rails/actionpack-xml_parser'
+
 #gem 'sqlite3'
 gem 'pg'
-gem 'feedzirra'
+gem "feedzirra", git: "https://github.com/pauldix/feedzirra.git"
 gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'jasny_bootstrap_extension_rails'
@@ -21,8 +32,8 @@ gem 'groupdate'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails',   '~> 4.0.0.rc2'
+  gem 'coffee-rails', '~> 4.0.0.rc2'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

@@ -4,6 +4,7 @@ class Feed < ActiveRecord::Base
   has_many :entries, dependent: :destroy
 
   validates_presence_of :feed_url
+  validates_uniqueness_of :feed_url
 
   before_save :update_feed_attributes
   
@@ -45,10 +46,10 @@ class Feed < ActiveRecord::Base
         title: entry.title.sanitize, 
         author: entry.author.try(:sanitize), 
         summary: entry.summary,
-        content: entry.content,
+        content: entry.try(:content),
         url: entry.url, 
         published: entry.published,
-        categories: entry.categories.join(', ')
+        categories: entry.try(:categories).try(:join, ', ')
       }
       
       entry = self.entries.where(url: entry.url).first

@@ -5,10 +5,6 @@ Basic RoR application that does something similar to Google Reader now that it w
 
 Feeds can be added and will be fetched on a timed basis and then cached for later viewing.
 
-Installation
-------------
-  
-
 TODOs
 ----
 
