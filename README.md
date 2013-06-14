@@ -14,12 +14,7 @@ TODOs
 
 - Add documentation for install and dependencies
 - Add authentication for feed management
-- Add JavaScript lib to show the updated times on how old the feed entry is (2 hours ago, 1 day ago, etc...)
 - Add support for infinite scrolling
-- Simplify the feed creating form (only needs the rss feed url, everything else is autofilled in).
-- Develop some mechanism to intelligently determine when to refetch the feed.  
-- Look at how many posts where found in the last x.hour window and use that to lengthen/shorten the update interval
-- Look at the time of day (late at night doesn't need as many updates)
 - Look at the TTL value from the feed if available
   
    
