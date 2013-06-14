@@ -4,6 +4,6 @@ class Entry < ActiveRecord::Base
   belongs_to :feed
   
   scope :latest,  ->(last = Time.zone.now){ 
-    where('published < ?', last).order('published DESC').limit(30)
+    where('published < ?', last).order('published DESC').limit(15)
   }
 end
