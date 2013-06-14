@@ -36,9 +36,11 @@ class FeedsController < ApplicationController
         if @feed
           @stats = @feed.entries.group_by_hour(:published).count
         else
-          @stats = Feed.all.map do |feed|
-            { name: feed.title, data: feed.entries.group_by_hour(:published, Time.zone, 1.day.ago..Time.zone.now).count }
-          end
+          @stats = Feed.all.map { |feed|
+            enddate = Time.now
+            startdate = 1.day.ago
+            { name: feed.title, data: feed.entries.group_by_hour(:published, Time.zone, startdate..enddate).count }
+          }.compact
         end
         render :json => @stats        
       }

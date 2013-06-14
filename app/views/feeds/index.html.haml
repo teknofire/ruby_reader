@@ -1,7 +1,7 @@
 %table.table.table-bordered.table-striped
   %thead
     %tr
-      %td{colspan:3, style: 'padding:0;'}
+      %td{colspan:4, style: 'padding:0;'}
         .navbar.navbar-static-top
           .navbar-inner
             .brand Listing feeds
@@ -14,12 +14,14 @@
     %tr
       %th Title
       %th Last updated
+      %th Refresh Interval
       %th Actions
   %tbody
     - @feeds.each do |feed|
       %tr
         %td= link_to feed.title, feed
         %td= feed.updated_at
+        %td= feed.refresh_interval / 60
         %td
           .btn-group
             = link_to 'Stats', stats_feed_path(feed), class: 'btn'

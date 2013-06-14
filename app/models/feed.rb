@@ -18,9 +18,24 @@ class Feed < ActiveRecord::Base
     @rss ||= Feedzirra::Feed.fetch_and_parse(self.feed_url)
   end
   
+  # calculate refresh interval for a feed based on min 15.minutes and max 1.hour.
+  # then figuring out a formula based on the number of posts from the last 3 hours
+  def refresh_interval
+    time = 60.minutes
+    
+    x = self.entries.where('published > ?', 6.hour.ago).count / 6.0
+    time = time + ((-45 * x + 60)).to_i.minutes
+    logger.info "#{time}, #{x}"
+    
+    time = [time, 15.minutes].max
+    time = [time, 2.hours].min
+    
+    time
+  end
+  
   def refresh_cache
     # don't fetch the feed again unless it's been more than 30.minutes since the last update
-    return false if (Time.zone.now - self.updated_at) < 30.minutes
+    return false if (Time.zone.now - self.updated_at) < self.refresh_interval
     self.refresh_cache!
   end
   
@@ -28,7 +43,7 @@ class Feed < ActiveRecord::Base
     rss.entries.each do |entry|
       entry_attrs = { 
         title: entry.title.sanitize, 
-        author: entry.author.sanitize, 
+        author: entry.author.try(:sanitize), 
         summary: entry.summary.sanitize,
         content: entry.content.try(:sanitize),
         url: entry.url, 
@@ -44,6 +59,7 @@ class Feed < ActiveRecord::Base
       end
     end
     update_feed_attributes
+    self.touch
     self.save!
   end
 end
