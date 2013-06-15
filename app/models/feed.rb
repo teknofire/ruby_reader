@@ -13,6 +13,10 @@ class Feed < ActiveRecord::Base
     self.last_modified = rss.last_modified
   end
   
+  def to_param
+    "#{self.id}-#{self.title.truncate(50).parameterize}"
+  end
+  
   def rss
     @rss ||= Feedzirra::Feed.fetch_and_parse(self.feed_url)
   end

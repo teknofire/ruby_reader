@@ -5,3 +5,4 @@
 $(document).on 'click', '.entries .content a', (evt) ->
   evt.preventDefault()
   window.open($(this).attr('href'))
+  

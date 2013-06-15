@@ -20,7 +20,7 @@
   %tbody
     - @feeds.each do |feed|
       %tr
-        %td= link_to feed.title, feed
+        %td= link_to feed.title, feed_entries_path(feed)
         %td
           %time.timeago{ datetime: feed.updated_at.iso8601 }= feed.updated_at.strftime('%Y-%m-%d %l:%M%P')
         %td

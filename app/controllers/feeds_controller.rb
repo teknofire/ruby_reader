@@ -14,16 +14,9 @@ class FeedsController < ApplicationController
   # GET /feeds/1
   # GET /feeds/1.json
   def show
-    last = (params[:last].present? ? Time.parse(params[:last]) : Time.zone.now)
-    
+    last = (params[:last].present? ? Time.parse(params[:last]) : Time.zone.now)    
     @feed = Feed.find(params[:id])
-    @entries = @feed.entries.latest(last)
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.js
-      format.json { render json: @feed }
-    end
+    redirect_to feed_path(@feed, last: last)
   end
   
   def stats
@@ -84,7 +77,7 @@ class FeedsController < ApplicationController
     respond_to do |format|
       if @feed.save
         @feed.refresh_cache!
-        format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
+        format.html { redirect_to feeds_path, notice: 'Feed was successfully created.' }
         format.json { render json: @feed, status: :created, location: @feed }
       else
         format.html { render action: "new" }
@@ -101,7 +94,7 @@ class FeedsController < ApplicationController
     respond_to do |format|
       if @feed.update_attributes(feed_params)
         @feed.refresh_cache!
-        format.html { redirect_to @feed, notice: 'Feed was successfully updated.' }
+        format.html { redirect_to feeds_path, notice: 'Feed was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

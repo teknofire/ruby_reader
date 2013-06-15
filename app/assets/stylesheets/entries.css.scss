@@ -2,13 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.likeable {
+  color: #ffb700;
+}
+
 .entry {
   h1 { font-size: 1.5em; }
   h2 { font-size: 1.3em; }
   h3 { font-size: 1.2em; } 
   
   .likeable {
-    color: #ffb700;
     margin-right: 5px;
   }
   
