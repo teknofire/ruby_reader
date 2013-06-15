@@ -1,0 +1,5 @@
+$('.entries').html("<%=escape_javascript(render @entries)%>");
+$('.page-sidebar').html("<%=escape_javascript(render('sidebar'))%>")
+$('#more-results-btn').attr('href', "<%=url_for(last: @entries.last.published, liked: params[:liked]) %>")
+$("time.timeago").timeago();
+$('html,body').scrollTop(0);

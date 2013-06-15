@@ -1,1 +1,5 @@
-<%= render 'shared/load_more_entries' %>
+<% if @last.nil? %>
+  <%= render 'shared/load_entries' %>
+<% else %>
+  <%= render 'shared/load_more_entries' %>
+<% end %>

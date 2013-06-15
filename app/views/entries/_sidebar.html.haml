@@ -1,0 +1,21 @@
+%ul.nav.nav-list.well.well-small.feed-nav
+  %li.nav-header Feeds
+  %li= link_to 'All Feeds', root_url, data: { track_history: true }
+  - Feed.order('title ASC').each do |feed|
+    %li{ class: (@feed and @feed.id == feed.id ? 'active' : '') }
+      = link_to feed_list_path(feed), title: feed.title, data: { track_history: true } do
+        %i.icon-rss
+        = feed.title
+%br/
+- if signed_in?
+  %ul.nav.nav-list.well.well-small.feed-nav
+    %li.nav-header
+      Filters
+    %li
+      = link_to url_for(liked: !(params[:liked] == 'true')), data: { track_history: true } do
+        - if params[:liked].present? and params[:liked] == "true"
+          %i.icon-star.likeable
+        - else
+          %i.icon-star-empty.likeable
+        Liked posts
+  %br/

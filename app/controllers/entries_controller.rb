@@ -3,9 +3,9 @@ class EntriesController < ApplicationController
   respond_to :html, :js
   
   def index
-    last = (params[:last].present? ? Time.parse(params[:last]) : Time.zone.now)
+    @last = (params[:last].present? ? Time.parse(params[:last]) : nil)
     
-    @entries = Entry.latest(last).includes(:feed)
+    @entries = Entry.latest(@last).includes(:feed)
     
     if params[:feed_id].present?
       @entries = @entries.where(feed_id: params[:feed_id])

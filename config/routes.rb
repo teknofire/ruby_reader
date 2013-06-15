@@ -59,6 +59,8 @@ RubyReader::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  get ':feed_id' => 'entries#index', :as => :feed_list
+  
   get '/signin' => 'sessions#new', :as => :signin
   get '/signout' => 'sessions#destroy', :as => :signout
   post '/auth/:provider/callback', :to => 'sessions#create'

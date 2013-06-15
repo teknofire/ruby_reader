@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.timeago
+//= require jquery.history
 //= require bootstrap
 //= require jasny-bootstrap
 //= require_tree .

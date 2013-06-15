@@ -14,7 +14,7 @@
       .row-fluid
         .span3.padded-content
           #sidebar.affix{ data: { spy: "affix", "offset-top"=> 0 } }        
-            = yield :sidebar
+            .page-sidebar= yield :sidebar
             = render 'layouts/sidebar'
         .span9.padded-content
           = yield
