@@ -1,12 +1,14 @@
 .entry{ id: dom_id(entry) }
   .row-fluid
     .span9.title
-      = link_to entry.title.html_safe, entry.url
+      .likeable{ id: dom_id(entry, :likeable)}
+        = render('entries/likeable', entry: entry) if signed_in?
+      = link_to entry.title.html_safe, entry.url, target: :_blank
     .span3.date
       %time.timeago{ datetime: entry.published.iso8601 }= entry.published.strftime('%Y-%m-%d %l:%M%P')
   .author
     From
-    = link_to entry.feed.title, entry.feed.url
+    = link_to entry.feed.title, entry.feed.url, target: :_blank
     = " by #{entry.author.html_safe}" unless entry.author.nil?
   .content
     = (entry.content.nil? ? entry.summary : entry.content).html_safe

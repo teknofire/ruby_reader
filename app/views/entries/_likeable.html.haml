@@ -1,0 +1,6 @@
+- if current_user.likes.where(:likeable => entry).empty?
+  = link_to like_entry_path(entry), method: :patch, class: 'pull-left likeable', remote: true do
+    %i.icon-star-empty
+- else
+  = link_to unlike_entry_path(entry), method: :patch, class: 'pull-left likeable active', remote: true do
+    %i.icon-star

@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   has_many :authorizations
   
-  has_many :transactions
-  has_many :coffee_charges
+  has_many :likes
   
   validates_presence_of :email
   validates_uniqueness_of :email
@@ -11,11 +10,11 @@ class User < ActiveRecord::Base
     create(:name => hash['info']['name'], :email => hash['info']['email'])
   end
   
-  def balance
-    transactions.sum(:amount)
+  def like(item)
+    self.likes.create(likeable: item)
   end
   
-  def cups
-    (self.balance / 0.5).to_i
+  def unlike(item)
+    self.likes.where(likeable: item).first.destroy
   end
 end

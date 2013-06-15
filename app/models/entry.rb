@@ -1,5 +1,6 @@
 class Entry < ActiveRecord::Base
   belongs_to :feed
+  has_many :likes, as: :likeable
   
   validates_uniqueness_of :url
   

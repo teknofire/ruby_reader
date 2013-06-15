@@ -4,8 +4,13 @@ RubyReader::Application.routes.draw do
     get :refresh, on: :collection
     get :stats, on: :member
     get :stats, on: :collection
+    
   end
 
+  resources :entries do
+    patch :like, on: :member
+    patch :unlike, on: :member
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
