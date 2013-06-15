@@ -12,5 +12,5 @@
       = link_to entry.feed.title, entry.feed.url, target: :_blank
       = " by #{entry.author.html_safe}" unless entry.author.nil?
     .content
-      = (entry.content.nil? ? entry.summary : entry.content).html_safe
+      = sanitize_entry(entry.content.nil? ? entry.summary : entry.content).html_safe
     %hr

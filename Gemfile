@@ -29,6 +29,7 @@ gem 'whenever', require: false
 gem 'chartkick'
 gem 'groupdate'
 gem 'omniauth-openid'
+gem 'html-pipeline'
 
 # Gems used only for assets and not required
 # in production environments by default.
