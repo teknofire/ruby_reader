@@ -7,9 +7,10 @@ module EntriesHelper
         kbd q samp var hr ruby rt rp li tr td th iframe
       ),
       :attributes => {
-        'a' => ['href'],
-        'img' => ['src'],
-        'div' => ['itemscope', 'itemtype'],
+        'a' => ['href', 'class'],
+        'p' => ['class'],
+        'img' => ['src', 'class', 'alt', 'title'],
+        'div' => ['itemscope', 'itemtype', 'class'],
         'iframe' => ['src', 'style'],
         :all  => ['abbr', 'accept', 'accept-charset',
                   'accesskey', 'action', 'align', 'alt', 'axis',

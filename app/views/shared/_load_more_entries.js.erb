@@ -2,6 +2,7 @@
   $('.entries').append("<%=escape_javascript(render @entries)%>");
   $('#more-results-btn').attr('href', "<%=root_url(last: @entries.last.published, liked: params[:liked]) %>")
   $("time.timeago").timeago();
+  $('#more-results-btn').html('Load more entries').removeClass('disabled').data('disabled', '');
 <% else %>
-  $('#more-results-btn').html('No more entries available').addClass('disabled');
+  $('#more-results-btn').html('No more entries available').addClass('disabled').data('disabled', 'true');
 <% end %>
