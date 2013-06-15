@@ -5,13 +5,16 @@
         %b Feeds List          
         .pull-right
           .btn-group
-            = link_to 'New Feed', new_feed_path, class: 'btn btn-success'
+            = link_to new_feed_path, class: 'btn btn-success' do
+              %i.icon-plus
+              New Feed
           .btn-group
             = link_to refresh_feeds_path, class: 'btn' do
+              %i.icon-refresh
               Refresh All
     %tr
       %th Title
-      %th Last updated
+      %th Updated
       %th Refresh Interval
       %th Actions
   %tbody
@@ -20,13 +23,18 @@
         %td= link_to feed.title, feed
         %td
           %time.timeago{ datetime: feed.updated_at.iso8601 }= feed.updated_at.strftime('%Y-%m-%d %l:%M%P')
-        %td= feed.refresh_interval / 60
+        %td
+          = "#{feed.refresh_interval / 60} min"
         %td
           .btn-group
-            = link_to 'Stats', stats_feed_path(feed), class: 'btn'
-            = link_to 'Edit', edit_feed_path(feed), class: 'btn'
-            = link_to 'Refresh', refresh_feed_path(feed), class: 'btn btn-primary'
-            = link_to 'Destroy', feed, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+            = link_to stats_feed_path(feed), class: 'btn', title: 'Stats' do
+              %i.icon-bar-chart
+            = link_to edit_feed_path(feed), class: 'btn', title: 'Edit' do
+              %i.icon-edit
+            = link_to refresh_feed_path(feed), title: 'Refresh', class: 'btn btn-primary' do
+              %i.icon-refresh
+            = link_to feed, :method => :delete, title: 'Destroy', :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger' do
+              %i.icon-trash
         
 .chart    
   = line_chart stats_feeds_path(format: :json), library: { title: 'Posts per hour', hAxis: { title: 'Time' }, vAxis: { title: 'Posts' } }
