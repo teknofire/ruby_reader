@@ -12,7 +12,7 @@ $(document).on 'click', 'a[data-track-history="true"]', (evt) ->
   return false if $(this).data('disabled')
   
   href = $(this).attr('href')
-  History.pushState({ tracked: true, href: href }, null, href)  
+  History.pushState({ tracked: true, href: href }, 'RubyReader', href)  
   
 statechange = (evt) ->
   # evt.preventDefault()
