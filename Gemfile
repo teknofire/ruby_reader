@@ -6,7 +6,7 @@ gem 'rails', '4.0.0.rc2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'protected_attributes'
+#gem 'protected_attributes'
 #gem 'activeresource', github: 'rails/activeresource'
 #gem 'actionpack-action_caching', github: 'rails/actionpack-action_caching'
 #gem 'actionpack-page_caching', github: 'rails/actionpack-page_caching'
@@ -28,6 +28,7 @@ gem 'quiet_assets'
 gem 'whenever', require: false
 gem 'chartkick'
 gem 'groupdate'
+gem 'omniauth-openid'
 
 # Gems used only for assets and not required
 # in production environments by default.

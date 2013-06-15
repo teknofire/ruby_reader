@@ -1,0 +1,25 @@
+#sidebar.affix{ data: { spy: "affix", "offset-top"=> 0 } }
+  %ul.nav.nav-list.well.well-small.feed-nav
+    %li.nav-header Feeds
+    %li= link_to 'All Feeds', root_url
+    - Feed.order('title ASC').each do |feed|
+      %li{ class: (@feed and @feed.id == feed.id ? 'active' : '') }
+        = link_to feed, title: feed.title do
+          %i.icon-rss
+          = feed.title
+  %br/
+  - if signed_in?
+    %ul.nav.nav-list.well.well-small.feed-nav
+      - if current_user.admin?
+        %li.nav-header
+          Manager
+        %li= link_to 'Edit Feeds', feeds_path
+      
+        %li
+          = link_to signout_path do
+            %i.icon-lock
+            Signout
+  - else
+    = link_to signin_path, class: 'btn btn-block' do
+      %i.icon-lock
+      Sign in

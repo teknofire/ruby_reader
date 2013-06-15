@@ -53,7 +53,11 @@ RubyReader::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
+  get '/signin' => 'sessions#new', :as => :signin
+  get '/signout' => 'sessions#destroy', :as => :signout
+  post '/auth/:provider/callback', :to => 'sessions#create'
+  get '/auth/failure' => 'sessions#failure'
+  
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'welcome#index'
