@@ -31,7 +31,7 @@ class Feed < ActiveRecord::Base
     logger.info "#{time}, #{x}"
     
     time = [time, 15.minutes].max
-    time = [time, 2.hours].min
+    time = [time, 1.hours].min
     
     time
   end
