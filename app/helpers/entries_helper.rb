@@ -28,7 +28,7 @@ module EntriesHelper
                   'selected', 'shape', 'size', 'span',
                   'start', 'summary', 'tabindex', 'target',
                   'title', 'type', 'usemap', 'valign', 'value',
-                  'vspace', 'width', 'itemprop']
+                  'vspace', 'itemprop']
       },
       :protocols => {
         'a'   => {'href' => ['http', 'https', 'mailto']},
