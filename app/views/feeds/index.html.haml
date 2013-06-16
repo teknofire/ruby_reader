@@ -1,7 +1,7 @@
 %table.table.table-bordered.table-striped.table-condensed
   %thead
     %tr
-      %td{colspan:4}
+      %td{colspan:5}
         %b Feeds List          
         .pull-right
           .btn-group
@@ -14,6 +14,7 @@
               Refresh All
     %tr
       %th Title
+      %th Entries
       %th Updated
       %th Refresh Interval
       %th Actions
@@ -21,6 +22,7 @@
     - @feeds.each do |feed|
       %tr
         %td= link_to feed.title, feed_list_path(feed)
+        %td= feed.entries.count
         %td
           %time.timeago{ datetime: feed.updated_at.iso8601 }= feed.updated_at.strftime('%Y-%m-%d %l:%M%P')
         %td
