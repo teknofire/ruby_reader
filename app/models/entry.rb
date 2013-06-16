@@ -8,4 +8,14 @@ class Entry < ActiveRecord::Base
     last = Time.zone.now if last.nil? 
     where('published < ?', last).order(published: :desc).limit(15)
   }
+  
+  searchable do
+    text :title, :content, :summary
+    
+    time :published
+    integer :feed_id
+    integer :liked_by_user_ids, multiple: true do
+      self.likes.pluck(:user_id)
+    end
+  end
 end

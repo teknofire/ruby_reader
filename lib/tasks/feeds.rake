@@ -4,5 +4,7 @@ namespace :feeds do
     Feed.all.each do |feed|
       feed.refresh_cache
     end
+    
+    Sunspot.commit
   end
 end

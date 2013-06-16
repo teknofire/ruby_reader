@@ -3,18 +3,25 @@ class EntriesController < ApplicationController
   respond_to :html, :js
   
   def index
-    @last = (params[:last].present? ? Time.parse(params[:last]) : nil)
+    @last = last = (params[:last].present? ? Time.parse(params[:last]) : nil)
     
-    @entries = Entry.latest(@last).includes(:feed)
-    
-    if params[:feed_id].present?
-      @feed = Feed.find(params[:feed_id])
-      @entries = @entries.where(feed_id: params[:feed_id])
+    search = Entry.search(include: [:feed, :likes]) do
+      if params[:q].present? and !params[:q].empty?
+        fulltext params[:q] do
+          boost_fields :title => 2.0
+        end
+      end
+      
+      with(:published).less_than last unless last.nil?
+      with :feed_id, params[:feed_id] if params[:feed_id].present?
+      
+      with :liked_by_user_ids, current_user.id if params[:liked].present? and params[:liked] == 'true'
+      
+      order_by :published, :desc
+      paginate :page => 1, :per_page => 15
     end
     
-    if params[:liked].present? and params[:liked] == 'true'
-      @entries = @entries.where(id: current_user.likes.where(likeable_type: 'Entry').pluck(:likeable_id))
-    end
+    @entries = search.results
     
     respond_with(@entries)
   end
