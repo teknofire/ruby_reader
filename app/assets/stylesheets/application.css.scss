@@ -15,11 +15,12 @@ html,body {
 
 #header {
   font-family: 'Lily Script One', cursive;
+  .btn { font-size: 2em; }
   .brand { font-size: 2em; }
   
   
-  &.navbar {
-    @include opacity(90);
+  .navbar {
+    @include opacity(80);
   }
 }
 
@@ -45,15 +46,25 @@ html,body {
   }
 }
 
-.feed-nav { 
-  background-color: #fff; 
-  width: 190px;
+#sidebar {
+  position: fixed;
+  top:0px;
+  bottom:0;
+  overflow: auto;
+  padding-top: 60px;
+  padding-bottom: 15px;
+  padding-right: 15px;
   
-  li a {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space:nowrap;
-  }
+  .feed-nav { 
+    background-color: #fff; 
+    width: 190px;
+  
+    li a {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space:nowrap;
+    }
+  }  
 }
 
 .table { background: #fff; }
