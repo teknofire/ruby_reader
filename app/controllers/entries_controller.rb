@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
   def index
     @last = last = (params[:last].present? ? Time.parse(params[:last]) : nil)
     
-    search = Entry.search(include: [:feed, :likes]) do
+    @search = Entry.search(include: [:feed, :likes]) do
       if params[:q].present? and !params[:q].empty?
         fulltext params[:q] do
           boost_fields :title => 2.0
@@ -21,7 +21,7 @@ class EntriesController < ApplicationController
       paginate :page => 1, :per_page => 15
     end
     
-    @entries = search.results
+    @entries = @search.results
     
     respond_with(@entries)
   end
