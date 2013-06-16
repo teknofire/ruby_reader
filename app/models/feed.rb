@@ -24,14 +24,15 @@ class Feed < ActiveRecord::Base
   # calculate refresh interval for a feed based on min 15.minutes and max 1.hour.
   # then figuring out a formula based on the number of posts from the last 3 hours
   def refresh_interval
-    time = 60.minutes
-    
     x = self.entries.where('published > ?', 6.hour.ago).count / 6.0
-    time = time + ((-45 * x + 60)).to_i.minutes
     
-    time = [time, 15.minutes].max
-    time = [time, 1.hours].min
+    if x <= 0.001
+      time = 120.minutes
+    else
+      time = ((-60 * x) + 60).to_i.minutes
+    end
     
+    time = [time, 15.minutes].max    
     time
   end
   
