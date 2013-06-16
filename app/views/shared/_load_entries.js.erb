@@ -1,6 +1,12 @@
 $('.entries').html("<%=escape_javascript(render @entries)%>");
 $('.page-sidebar').html("<%=escape_javascript(render('sidebar'))%>")
+<% unless @entries.empty? %>
 $('#more-results-btn').attr('href', "<%=url_for(last: @entries.last.published, liked: params[:liked]) %>")
+<% end %>
 $("time.timeago").timeago();
 $('html,body').scrollTop(0);
 $('#more-results-btn').html('Load more entries').removeClass('disabled').data('disabled', '');
+$('.feed-sidebar .active').removeClass('active')
+<% unless @feed.nil? %>
+$('#<%= dom_id(@feed, :sidebar) %>').addClass('active')
+<% end %>

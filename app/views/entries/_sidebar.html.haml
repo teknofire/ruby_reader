@@ -1,8 +1,9 @@
-%ul.nav.nav-list.well.well-small.feed-nav
+%ul.nav.nav-list.well.well-small.feed-nav.feed-sidebar
   %li.nav-header Feeds
-  %li= link_to 'All Feeds', root_url, data: { track_history: true }
+  %li= link_to 'All Feeds', root_url
+  / , data: { track_history: true }
   - Feed.order('title ASC').each do |feed|
-    %li{ class: (@feed and @feed.id == feed.id ? 'active' : '') }
+    %li{ id: dom_id(feed, :sidebar), class: (@feed and @feed.id == feed.id ? 'active' : '') }
       = link_to feed_list_path(feed), title: feed.title, data: { track_history: true } do
         %i.icon-rss
         = feed.title

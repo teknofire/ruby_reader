@@ -8,6 +8,7 @@ class EntriesController < ApplicationController
     @entries = Entry.latest(@last).includes(:feed)
     
     if params[:feed_id].present?
+      @feed = Feed.find(params[:feed_id])
       @entries = @entries.where(feed_id: params[:feed_id])
     end
     
