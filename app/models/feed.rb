@@ -28,7 +28,6 @@ class Feed < ActiveRecord::Base
     
     x = self.entries.where('published > ?', 6.hour.ago).count / 6.0
     time = time + ((-45 * x + 60)).to_i.minutes
-    logger.info "#{time}, #{x}"
     
     time = [time, 15.minutes].max
     time = [time, 1.hours].min
