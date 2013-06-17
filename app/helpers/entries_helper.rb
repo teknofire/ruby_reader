@@ -1,4 +1,17 @@
 module EntriesHelper
+  def refresh_url(options = {})
+    url_for(refresh_options(options)).html_safe
+  end
+  
+  def refresh_options(options = {})
+    request_params = params.dup
+    # get rid of jquery cache busting and stuff
+    %w{ _ controller action utf8 commit count }.each do |item|
+      request_params.delete(item)
+    end
+    request_params.merge(options)
+  end
+  
   def sanitize_entry(content)
     whitelist = HTML::Pipeline::SanitizationFilter::WHITELIST.merge({
       :elements => %w(

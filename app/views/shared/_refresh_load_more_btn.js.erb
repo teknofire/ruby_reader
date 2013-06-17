@@ -1,0 +1,7 @@
+<% if @entries.empty? %>  
+  $('#more-results-btn').html('No more entries available').addClass('disabled').data('disabled', 'true');
+  $('#more-results-btn').attr('href', "<%=refresh_url %>");
+<% else %>
+  $('#more-results-btn').attr('href', "<%=refresh_url(last: @entries.last.published) %>");
+  $('#more-results-btn').html('Load more entries').removeClass('disabled').data('disabled', '');
+<% end %>

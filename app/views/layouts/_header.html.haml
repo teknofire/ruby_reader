@@ -7,10 +7,7 @@
           Ruby Reader
         
         .pull-right
-          = form_tag '', method: 'GET', class: "form-search navbar-form form-inline" do
+          = form_tag '', method: 'GET', class: "form-search navbar-form form-inline", remote: true do
             .input-append
               = text_field_tag :q, params[:q], class: "span2 search-query"
               = submit_tag "Search", class: 'btn'
-        
-            = link_to root_url, class: 'btn', id: 'refresh' do
-              %i.icon-refresh

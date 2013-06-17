@@ -11,6 +11,7 @@ $border_color: $primary_color;
 html,body {
   background-color: $primary_color;
   font-family: 'Headland One', serif;
+  min-height: 100%;
 }
 
 #header {
@@ -24,7 +25,11 @@ html,body {
 }
 
 .hidden { display: none; }
-.page-alert { z-index: 1040; top: 50px; position: fixed; }
+.page-alert { 
+  z-index: 1040; top: 41px; position: fixed;
+  
+  .alert { margin-bottom: 0; }
+}
 
 #footer {
   background-color: #252528;

@@ -1,16 +1,28 @@
-.entry{ id: dom_id(entry), class: entry.feed.title.parameterize }
+.entry{ id: dom_id(entry), class: entry.feed.title.parameterize, data: { published: entry.published } }
   .row-fluid
-    .span9.title
-      .likeable{ id: dom_id(entry, :likeable)}
-        = render('entries/likeable', entry: entry) if signed_in?
-      = link_to entry.title.html_safe, entry.url, target: :_blank
+    .span9
+      .title
+        - if signed_in?
+          .likeable{ id: dom_id(entry, :likeable)}
+            = render('entries/likeable', entry: entry)
+          .unread
+            = render('entries/unread', entry: entry)
+        = link_to entry.title.html_safe, entry.url, target: :_blank
+      .author
+        From
+        = link_to entry.feed.title, entry.feed.url, target: :_blank
+        = " by #{entry.author.html_safe}" unless entry.author.nil?
     .span3.date
-      %time.timeago{ datetime: entry.published.iso8601 }= entry.published.strftime('%Y-%m-%d %l:%M%P')
+      - if entry.updated_at != entry.created_at
+        Updated 
+      - else
+        Added 
+      %time.timeago{ datetime: entry.updated_at.iso8601 }= entry.updated_at
+      %br/
+      Published  
+      %time.timeago{ datetime: entry.published_at.iso8601 }= entry.published_at
   - cache([entry.feed, entry]) do
-    .author
-      From
-      = link_to entry.feed.title, entry.feed.url, target: :_blank
-      = " by #{entry.author.html_safe}" unless entry.author.nil?
     .content
       = sanitize_entry(entry.content.nil? ? entry.summary : entry.content).html_safe
     %hr
+- entry.mark_as_read!(:for => current_user) if signed_in?

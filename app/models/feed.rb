@@ -29,7 +29,7 @@ class Feed < ActiveRecord::Base
     if x <= 0.001
       time = 120.minutes
     else
-      time = ((-60 * x) + 60).to_i.minutes
+      time = ((-30 * x) + 60).to_i.minutes
     end
     
     time = [time, 15.minutes].max    
@@ -62,7 +62,6 @@ class Feed < ActiveRecord::Base
       end
     end
     update_feed_attributes
-    self.touch
     self.save!
   end
 end

@@ -1,0 +1,7 @@
+.entries
+  - if not @entries.empty?
+    = render @entries
+  - elsif params[:read] == 'true'
+    .lead{ style: 'text-align: center;' } No entries found
+  - else
+    .lead{ style: 'text-align: center;' } No unread entries found

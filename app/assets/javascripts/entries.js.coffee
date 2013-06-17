@@ -13,15 +13,19 @@ $(document).on 'click', 'a[data-track-history="true"]', (evt) ->
   href = $(this).attr('href')
   History.pushState({ tracked: true, href: href }, 'RubyReader', href)  
   
-$(document).ajaxStart ->
-  $('#refresh i.icon-refresh').addClass('icon-spin')
-
-spinner = null
-$(document).ajaxComplete ->
-  clearTimeout(spinner) if spinner?
-  spiner = setTimeout -> 
-    $('#refresh i.icon-refresh').removeClass('icon-spin')
-  , 1000
+# $(document).ajaxStart =>
+#   unless spinner?
+#     refresh = $('#refresh')
+#     $('#refresh').removeClass('btn-danger').html('<i class="icon-refresh icon-spin"></i>')
+# 
+# spinner = null
+# $(document).ajaxComplete =>
+#   clearTimeout(spinner) if spinner?
+#   spinner = setTimeout -> 
+#     if $('#refresh i.icon-refresh')
+#       $('#refresh i.icon-refresh').removeClass('icon-spin');
+#     spinner = null
+#   , 1000
   
 statechange = (evt) ->
   # evt.preventDefault()
@@ -33,3 +37,8 @@ statechange = (evt) ->
 
 $(document).ready ->
   History.Adapter.bind(window, 'statechange', statechange)
+
+$(window).focus ->
+  $('#refresh').html('<i class="icon-spinner icon-spin"></i>')
+  published = $('.entry:first').data('published')
+  $.ajax({ url: '/', data: { count: true }, dataType: 'script'})

@@ -1,3 +1,6 @@
 .row-fluid
   .span6.offset3{ style: 'margin-bottom: 20px;' }
-    = link_to 'More Entries', url_for(params.merge(last: @entries.last.published)), id: 'more-results-btn', remote: true, class: 'btn btn-block btn-large'
+    = link_to 'More Entries', refresh_url(last: @entries.last.try(:published)), id: 'more-results-btn', remote: true, class: 'btn btn-block btn-large'
+    
+:javascript
+  #{render 'shared/notify_of_updates.js' }

@@ -5,12 +5,13 @@ RubyReader::Application.routes.draw do
     get :stats, on: :member
     get :stats, on: :collection
     
-    resources :entries, only: [:index]
+    # resources :entries, only: [:index]
   end
 
   resources :entries do
     patch :like, on: :member
     patch :unlike, on: :member
+    patch :allread, on: :collection
   end
 
   # The priority is based upon order of creation:

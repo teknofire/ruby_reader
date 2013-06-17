@@ -32,11 +32,14 @@
   
   .date {
     text-align: right;
+    font-size: 0.8em;
   }
   
   .content {
     padding: 10px;
   }
+  
+  iframe { width: 100%; }
   
   blockquote p {
     font-size: 1em;

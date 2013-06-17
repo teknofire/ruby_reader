@@ -1,12 +1,14 @@
 class Entry < ActiveRecord::Base
-  belongs_to :feed
+  belongs_to :feed, touch: true
   has_many :likes, as: :likeable
   
   validates_uniqueness_of :url
   
+  acts_as_readable on: :created_at
+  
   scope :latest,  ->(last = Time.zone.now){ 
     last = Time.zone.now if last.nil? 
-    where('published < ?', last).order(published: :desc).limit(15)
+    where('created_at < ?', last).order(published: :desc).limit(15)
   }
   
   searchable do
@@ -22,10 +24,32 @@ class Entry < ActiveRecord::Base
       self.feed.title
     end
     
+    time :created_at
+    time :updated_at
     time :published
+    integer :read_by, multiple: true do
+      users = ReadMark.global.where('timestamp >= ?', self.send(self.readable_options[:on])).pluck(:user_id) 
+      users += self.read_marks.pluck(:user_id)
+      users.uniq
+    end
     integer :feed_id
     integer :liked_by_user_ids, multiple: true do
       self.likes.pluck(:user_id)
+    end
+  end
+  
+  # def published
+  #   self.created_at
+  # end
+  
+  def published_at
+    self.read_attribute(:published)
+  end
+  
+  def mark_as_read!(options)
+    if self.unread?(options[:for])
+      super
+      self.index
     end
   end
   

@@ -1,0 +1,7 @@
+<% if signed_in? %>
+  <% if new_total > 0 %>
+    $('#refresh').addClass('badge-important').html('<%= new_total %> unread')
+  <% else %>
+    $('#refresh').removeClass('badge-important').html('<%= new_total %> unread')
+  <% end %>
+<% end %>

@@ -1,6 +1,5 @@
 - content_for :sidebar do
   = render 'sidebar'
 
-.entries= render @entries
-- unless @entries.empty?
-  = render 'shared/more_entries'
+= render 'shared/entries'
+= render 'shared/more_entries'

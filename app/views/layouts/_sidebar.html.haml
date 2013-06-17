@@ -2,7 +2,11 @@
   - if current_user.admin?
     %ul.nav.nav-list.well.well-small.feed-nav
       %li.nav-header
-        Admin
+        User Actions
+      %li
+        = link_to allread_entries_path, method: :patch do
+          %i.icon-envelope
+          Mark all read
       %li
         = link_to feeds_path do
           %i.icon-edit

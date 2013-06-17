@@ -21,7 +21,7 @@
   %tbody
     - @feeds.each do |feed|
       %tr
-        %td= link_to feed.title, feed_list_path(feed)
+        %td= link_to feed.title, edit_feed_path(feed)
         %td= feed.entries.count
         %td
           %time.timeago{ datetime: feed.updated_at.iso8601 }= feed.updated_at.strftime('%Y-%m-%d %l:%M%P')
@@ -31,10 +31,6 @@
           .btn-group
             = link_to stats_feed_path(feed), class: 'btn', title: 'Stats' do
               %i.icon-bar-chart
-            = link_to edit_feed_path(feed), class: 'btn', title: 'Edit' do
-              %i.icon-edit
-            = link_to refresh_feed_path(feed), title: 'Refresh', class: 'btn btn-primary' do
-              %i.icon-refresh
             = link_to feed, :method => :delete, title: 'Destroy', :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger' do
               %i.icon-trash
         
