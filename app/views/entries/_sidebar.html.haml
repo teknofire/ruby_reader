@@ -23,12 +23,12 @@
           %i.icon-star.likeable
         - else
           %i.icon-star-empty.likeable
-        Liked posts
+        Liked
     %li
       = link_to refresh_url(:read => params[:read] != 'true'), data: { track_history: true } do
         - if params[:read].present? and params[:read] == "true"
           %i.icon-envelope
         - else
           %i.icon-envelope-alt
-        Show read posts      
+        Read      
   %br/
