@@ -3,8 +3,9 @@
   %li
     = link_to refresh_url(feed_id: nil) do
       All feeds
-      #refresh.badge.pull-right
-        0 unread
+      - if signed_in?
+        #refresh.badge.pull-right
+          0 unread
   / , data: { track_history: true }
   - Feed.order('title ASC').each do |feed|
     - logger.info "#{params[:feed_id]} == #{feed.id}"
