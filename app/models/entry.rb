@@ -2,7 +2,10 @@ class Entry < ActiveRecord::Base
   belongs_to :feed, touch: true
   has_many :likes, as: :likeable
   
+  validates_presence_of :url
   validates_uniqueness_of :url
+  validates_presence_of :remote_id
+  validates_uniqueness_of :remote_id
   
   acts_as_readable on: :created_at
   
@@ -27,6 +30,7 @@ class Entry < ActiveRecord::Base
     time :created_at
     time :updated_at
     time :published
+    
     integer :read_by, multiple: true do
       users = ReadMark.global.where('timestamp >= ?', self.send(self.readable_options[:on])).pluck(:user_id) 
       users += self.read_marks.pluck(:user_id)

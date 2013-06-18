@@ -50,6 +50,7 @@ class Feed < ActiveRecord::Base
   def refresh_cache!
     rss.entries.each do |entry|
       entry_attrs = { 
+        remote_id: entry.id,
         title: entry.title.sanitize, 
         author: entry.author.try(:sanitize), 
         summary: entry.summary,
@@ -59,7 +60,7 @@ class Feed < ActiveRecord::Base
         categories: entry.try(:categories).try(:join, ', ')
       }
       
-      entry = self.entries.where(url: entry.url).first
+      entry = self.entries.where(remote_id: entry.id).first
       if entry.nil?
         self.entries.create(entry_attrs)
       else
@@ -67,6 +68,6 @@ class Feed < ActiveRecord::Base
       end
     end
     update_feed_attributes
-    self.save!
+    self.save
   end
 end
