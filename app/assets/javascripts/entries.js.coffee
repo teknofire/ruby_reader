@@ -27,6 +27,7 @@ $(document).on 'click', 'a[data-track-history="true"]', (evt) ->
 #     spinner = null
 #   , 1000
   
+
 statechange = (evt) ->
   # evt.preventDefault()
   state = History.getState()
@@ -37,6 +38,8 @@ statechange = (evt) ->
 
 $(document).ready ->
   History.Adapter.bind(window, 'statechange', statechange)
+  height = $('#sidebar').height()
+  $('#content').css('min-height', height)
 
 $(window).focus ->
   $('#refresh').html('<i class="icon-spinner icon-spin"></i>')
