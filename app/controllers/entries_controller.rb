@@ -71,17 +71,24 @@ class EntriesController < ApplicationController
   helper_method :new_total
   
   def search(last = nil, first = nil)
+    last = Time.zone.now if last.nil?
+    
     Entry.search(include: [:feed, :likes]) do
       if params[:q].present? and !params[:q].empty?
         fulltext params[:q] do
           boost_fields :title => 2.0
         end
+      else
+        if signed_in? and params[:read] != 'true' and params[:liked] != 'true'
+          without(:read_by, current_user.id)
+        end
+        if params[:liked].present? and params[:liked] == 'true'
+          with :liked_by_user_ids, current_user.id 
+        end
       end
       
-      without(:read_by, current_user.id) if signed_in? and params[:read] != 'true'
       with(:published).less_than last unless last.nil?
       with :feed_id, params[:feed_id] if params[:feed_id].present?
-      with :liked_by_user_ids, current_user.id if params[:liked].present? and params[:liked] == 'true'
       
       order_by :published, :desc
       paginate :page => 1, :per_page => 15
