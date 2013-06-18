@@ -31,6 +31,9 @@
           .btn-group
             = link_to stats_feed_path(feed), class: 'btn', title: 'Stats' do
               %i.icon-bar-chart
+            = link_to reseed_feed_path(feed), method: :patch, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } do
+              %i.icon-trash
+              %i.icon-refresh
             = link_to feed, :method => :delete, title: 'Destroy', :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger' do
               %i.icon-trash
         

@@ -1,5 +1,5 @@
 class FeedsController < ApplicationController
-  before_filter :require_admin_auth, only: [:index, :new, :edit, :create, :update]
+  before_filter :require_admin_auth, only: [:index, :new, :edit, :create, :update, :reseed]
   # GET /feeds
   # GET /feeds.json
   def index
@@ -9,6 +9,14 @@ class FeedsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @feeds }
     end
+  end
+
+  def reseed
+    @feed = Feed.find(params[:id])
+    if !@feed.reseed!
+      flash[:error] = "Error reseeding #{@feed.title}, #{@feed.errors.full_messages}"
+    end
+    redirect_to feeds_path
   end
 
   # GET /feeds/1

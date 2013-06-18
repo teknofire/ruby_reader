@@ -36,6 +36,11 @@ class Feed < ActiveRecord::Base
     time
   end
   
+  def reseed!
+    self.entries.destroy_all
+    self.refresh_cache!
+  end
+  
   def refresh_cache
     # don't fetch the feed again unless it's been more than 30.minutes since the last update
     return false if (Time.zone.now - self.updated_at) < self.refresh_interval

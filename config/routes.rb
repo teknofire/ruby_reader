@@ -4,7 +4,8 @@ RubyReader::Application.routes.draw do
     get :refresh, on: :collection
     get :stats, on: :member
     get :stats, on: :collection
-    
+    patch :reseed, on: :member
+        
     # resources :entries, only: [:index]
   end
 
