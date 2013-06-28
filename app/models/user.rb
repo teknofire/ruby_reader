@@ -13,9 +13,11 @@ class User < ActiveRecord::Base
   
   def like(item)
     self.likes.create(likeable: item)
+    item.index
   end
   
   def unlike(item)
     self.likes.where(likeable: item).first.destroy
+    item.index
   end
 end
