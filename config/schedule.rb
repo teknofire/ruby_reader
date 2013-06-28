@@ -21,7 +21,7 @@ set :output, "log/cron_log.log"
 #   runner "AnotherModel.prune_old_records"
 # end
 
-every 1.minute do
+every 10.minutes do
   rake "feeds:update_cache"
 end
 
