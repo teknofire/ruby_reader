@@ -7,8 +7,11 @@ class User < ActiveRecord::Base
   
   acts_as_reader
   
-  def self.create_from_hash!(hash)
-    create(:name => hash['info']['name'], :email => hash['info']['email'])
+  def self.create_or_find_from_hash!(hash)
+    user = where(email: hash['info']['email']).first
+    user = create!(:name => hash['info']['name'], :email => hash['info']['email']) if user.nil?
+    
+    user
   end
   
   def like(item)

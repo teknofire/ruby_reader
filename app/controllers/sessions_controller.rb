@@ -2,13 +2,16 @@ class SessionsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
   
   def create
-    unless @auth = Authorization.find_from_hash(auth_hash)
-      @auth = Authorization.create_from_hash(auth_hash, current_user)
+    unless @auth = Authorization.find_from_hash(auth_hash, request.host)
+      if @auth = Authorization.create_from_hash(auth_hash, current_user, request.host)
+        flash[:success] = "Successfully logged in as #{current_user.name}"
+      else
+        flash[:error] = "Previous credentials was found that doesn't match the current one"
+        redirect_to root_url
+      end
     end
     
     self.current_user = @auth.user
-    
-    flash[:success] = "Successfully logged in as #{current_user.name}"
     redirect_back_or_default(root_url)
   end
   
