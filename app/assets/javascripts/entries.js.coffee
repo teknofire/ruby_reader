@@ -37,6 +37,22 @@ statechange = (evt) ->
 
 monitorSelector = '.entry'
 $(window).scroll ->
+  morebtn = $('#more-results-btn')
+  
+  if morebtn.inViewport(0)
+    if !morebtn.data('viewable')
+      morebtn.data('viewable', true)
+      morebtn.button('loading')
+      setTimeout => 
+        morebtn.button('reset')
+      , 1000
+      morebtn.click()
+      
+  else
+    if morebtn.data('viewable')
+      morebtn.data('viewable', false)
+    
+    
   for item in $(monitorSelector)
     if $(item).inViewport(400)
       if !$(item).data('viewable')
