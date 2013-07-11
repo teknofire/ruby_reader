@@ -10,6 +10,7 @@ RubyReader::Application.routes.draw do
   end
 
   resources :entries do
+    patch :read, on: :member
     patch :like, on: :member
     patch :unlike, on: :member
     patch :allread, on: :collection

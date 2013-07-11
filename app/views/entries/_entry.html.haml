@@ -5,8 +5,7 @@
         - if signed_in?
           .likeable{ id: dom_id(entry, :likeable)}
             = render('entries/likeable', entry: entry)
-          .unread
-            = render('entries/unread', entry: entry)
+          = render('entries/unread', entry: entry)
         = link_to entry.title.html_safe, entry.url, target: :_blank
       .author
         From
@@ -24,5 +23,4 @@
   - cache([entry.feed, entry]) do
     .content
       = sanitize_entry(entry.content.nil? ? entry.summary : entry.content).html_safe
-    %hr
-- entry.mark_as_read!(:for => current_user) if signed_in?
+/ - entry.mark_as_read!(:for => current_user) if signed_in?

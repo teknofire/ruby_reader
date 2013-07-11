@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.timeago
 //= require jquery.history
+//= require jquery.inviewport
 //= require bootstrap
 //= require jasny-bootstrap
 //= require_tree .

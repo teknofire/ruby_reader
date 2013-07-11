@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_filter :require_login, only: [:like, :unlike, :liked, :allread]
+  before_filter :require_login, only: [:like, :unlike, :liked, :allread, :read, :unread_count]
   respond_to :html, :js
 
   def index
@@ -25,6 +25,16 @@ class EntriesController < ApplicationController
     @entries.each(&:index)
     
     redirect_to root_url
+  end
+  
+  def read
+    @entry = Entry.find(params[:id])
+    @entry.mark_as_read!(:for => current_user)
+    respond_to do |format|
+      format.js {
+        render 'count'
+      }
+    end
   end
   
   def like

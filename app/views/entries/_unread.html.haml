@@ -1,2 +1,3 @@
 - if entry.unread?(current_user)
-  %i.icon-envelope-alt.pull-left{title: 'Unread message' }
+  .unread{ data: { read_url: read_entry_path(entry) } }
+    %i.icon-envelope-alt.pull-left{title: 'Unread message' }
