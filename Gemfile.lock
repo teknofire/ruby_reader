@@ -50,6 +50,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     curb (0.8.4)
+    dalli (2.6.4)
     erubis (2.7.0)
     escape_utils (0.3.2)
     execjs (1.4.0)
@@ -190,6 +191,7 @@ DEPENDENCIES
   bootstrap-sass
   chartkick
   coffee-rails (~> 4.0.0.rc2)
+  dalli
   feedzirra!
   font-awesome-rails
   groupdate
