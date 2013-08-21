@@ -8,7 +8,6 @@
           0 unread
   / , data: { track_history: true }
   - Feed.order('title ASC').each do |feed|
-    - logger.info "#{params[:feed_id]} == #{feed.id}"
     %li{ id: dom_id(feed, :sidebar), class: (params[:feed_id].to_i == feed.id ? 'active' : '') }
       = link_to refresh_url(feed_id: feed), title: feed.title, data: { track_history: true } do
         %i.icon-rss
