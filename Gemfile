@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.0.0'
-gem 'rails', '4.0.0.rc2'
+gem 'rails', '4.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -30,8 +30,8 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'omniauth-openid'
 gem 'html-pipeline'
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+gem 'sunspot_rails', '~> 2.1.0'
+gem 'sunspot_solr', '~> 2.1.0'
 gem 'progress_bar'
 gem 'unread'
 gem 'dalli'
@@ -40,8 +40,8 @@ gem 'lograge'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 4.0.0.rc2'
-  gem 'coffee-rails', '~> 4.0.0.rc2'
+  gem 'sass-rails',   '~> 4.0.0'
+  gem 'coffee-rails', '~> 4.0.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
