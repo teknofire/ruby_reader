@@ -3,4 +3,10 @@
     = link_to 'Load more entries', refresh_url(last: @entries.last.try(:published)), id: 'more-results-btn', remote: true, class: 'btn btn-block btn-large', data: { loading_text: "Loading..." }
     
 :javascript
+  $('#more-results-btn').on('ajax:beforeSend', function() { 
+    $(this).button('loading');
+  })
+  $('#more-results-btn').on('ajax:complete', function() { 
+    $(this).button('reset');
+  })
   #{render 'shared/notify_of_updates.js' }

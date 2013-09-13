@@ -42,10 +42,10 @@ $(window).scroll ->
   if morebtn.inViewport(0)
     if !morebtn.data('viewable')
       morebtn.data('viewable', true)
-      morebtn.button('loading')
-      setTimeout => 
-        morebtn.button('reset')
-      , 1000
+      # morebtn.button('loading')
+      # setTimeout => 
+      #   morebtn.button('reset')
+      # , 1000
       morebtn.click()
       
   else
